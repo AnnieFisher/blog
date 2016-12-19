@@ -1,0 +1,91 @@
+var app = angular.module('ngBlog');
+app.directive('blogDirective', function($location, postService, $compile){
+	return{
+		
+		restrict : 'E',
+		template :  
+		
+		`
+		<div>
+			<div class="view">
+				<!--Intro content-->
+				<div class="full-bg-img flex-center">
+					<div class="row">
+		        			<div>
+				        		<ul>
+								<div class="border2">
+									<li id="title" >
+										<h3 id="name">{{blog.postName}}</h3>
+										<h5 id ="date">{{blog.postDate}}</h5></li>	
+									<li>
+										<h4 id = "postBody">{{blog.body}}</h4>
+									</li>
+								</div>
+								<br>
+								<button class="btn btn-danger btn-sm" ng-click = "deletePost(blog)" >Delete Post</button>
+								<button class="btn btn-success" ng-click = "update(blog)" >Update Post</button>
+								
+								<br>
+				        		</ul>
+
+		        			</div>
+					</div>  
+				</div>
+			</div>
+		</div>
+	
+			
+		`,
+		
+		link : function($scope, $element, $attr){
+			
+			
+			$scope.blog = postService.getBlog();
+			
+			
+			$scope.blogCopy = {};
+		     var editForm = null;
+
+		     $scope.update = function(blog) {
+
+		      if(editForm===null){
+			      $scope.blogCopy = angular.copy(blog);
+	
+			      var $form =
+			       `
+					   <form id="updatePost" ng-repeat ="post in posts">
+						  <label for="postName" class="sr-only">Post Name</label>
+						  <input type="text" size = "50" ng-model="blogCopy.postName" name="postName" placeholder = "Title">
+						  <br><br><br>
+						  <textarea name="body" ng-model="blogCopy.body" placeholder = "Enter text here" 
+						            wrap="hard" rows="20" cols="150">
+						  </textarea>
+						  <br><br>
+						  <button class="btn" ng-click ="save(blogCopy)">Save</button>
+			    	  		  <button class="btn" ng-click="cancel()">Cancel</button>
+						</form
+			      `
+				    var compiledForm = $compile($form)($scope);
+				    editForm = compiledForm;
+				    $element.after(compiledForm);
+
+		      		}
+		     	};
+		     
+				$scope.cancel = function() {
+				  if(editForm !=null) {
+				    editForm.remove(editForm);
+				    editForm = null;
+				  }
+				};
+				
+				$scope.save = function(blog){
+				  $scope.edit(blog);
+				  editForm.remove();
+				  editForm = null;
+				  $scope.blogCopy = {};
+				};
+
+		    }
+		  }
+		});

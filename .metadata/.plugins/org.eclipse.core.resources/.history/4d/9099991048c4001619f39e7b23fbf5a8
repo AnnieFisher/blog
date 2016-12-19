@@ -1,0 +1,11 @@
+<div>
+
+<form action="addPost()" id="postForm">
+  <label for="postName" class="sr-only">Post Name</label>
+  <input type="text" ng-model="post.postName" name="postName">
+  <button ng-click =createPost(post)>Submit</button>
+</form>
+
+<textarea name="body" form="postForm">Blog here...</textarea>
+
+</div>

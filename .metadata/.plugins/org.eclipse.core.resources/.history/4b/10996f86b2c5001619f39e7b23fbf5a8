@@ -1,0 +1,50 @@
+
+    <div class="container" style ="margin-bottom:20px" id = "trans">
+         <div>
+	            <div class="col-md-6 col-md-offset-3" >
+	            		<h1 class="h1-responsive" id = "mainTitle">Annie's Wall of Inspiration </h1>
+	            	</div>
+	         
+	          	<div col-md-6 style="margin-top:20px" id = "add" >
+					<button class="btn btn-success" ng-click = "addPostRedirect()" >Add Post</button>
+			 	</div>
+		 </div>
+     </div>
+
+	 <div class="container" style ="margin-bottom:10px">
+         <div class="row" id = "transparent">
+             <div class="col-md-9 col-md-offset-2 id ="quoteList">
+	            		<ul>
+		            		<li>
+		            		<h4 id="quote">"{{temp}}"</h4>
+		            		<h5 id = "author" ng-repeat= "qoute in quotes">-{{qoute.title}}</h5>
+		            		</li>
+	            		</ul>
+              </div>
+		   </div>
+      </div>
+
+     <div class="container">      
+  
+       <div class="row">
+        		<div>
+	        		<ul ng-repeat= "post in posts">
+					<div class="border">
+						<li id="title" ng-click = goToBlog(post)>
+							<h3 id="name">{{post.postName}}</h3>
+							<h5 id ="date">{{post.postDate}}</h5></li>	
+						<li>
+							<h4 id = "postBody">{{post.body}}</h4>
+						</li>
+					</div>
+					<br>
+					<button class="btn btn-danger btn-sm" ng-click = "deletePost(post)" >Delete Post</button>
+					<br>
+	        		</ul>
+        		</div>
+        </div>
+	</div>
+	
+    
+	
+	

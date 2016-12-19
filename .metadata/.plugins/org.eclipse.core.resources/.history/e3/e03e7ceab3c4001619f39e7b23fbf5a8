@@ -1,0 +1,87 @@
+
+var app = angular.module('ngBlog');
+app.controller('postsController', function($scope, postService, $location){
+    
+	$scope.posts = [];
+	$scope.quotes = [];
+	$scope.resultArr = [];
+	var temp;
+	
+	  $scope.loadData = function(){
+	      postService.getPosts()
+	        .then(function(response){
+	          $scope.posts = response.data;
+	        });
+	    };
+	    	    
+	    
+	    $scope.loadQuote = function(){
+	    		postService.getQuote()
+	    		.then(function(response){
+	    			$scope.quotes = response.data;
+	    			for (var i = 0; i<$scope.quotes.length;i++){
+	    				temp = $scope.quotes[i].content;
+	    				console.log(temp.splice('<p>'))
+	    				}
+	    		})
+	    }
+
+	    $scope.goToBlog = function(post) {
+	        postService.setBlog(post);
+	        $location.url("/blog")
+	    };
+	  
+		
+	    $scope.addPostRedirect = function() {
+			$location.url('/addPost');
+		};
+	
+		$scope.createPost = function(post) {
+		     
+		      post.postDate = Date.now();
+	
+		      var newPost = {
+		    		postDate : post.postDate,
+		    		postName : post.postName,
+		        body : post.body
+		 
+		      }
+	
+		      postService.createPost(post)
+		      .then(function(res){
+		      })
+		      $location.url("/posts")
+		 };
+		 
+		 $scope.updatePostRedirect = function() {
+				$location.url('/updatePost');
+				console.log(post)
+			};
+		 
+		 $scope.update = function(post) {
+				postService.update(post)
+				.then(function(response) {
+					$scope.loadData();
+				})
+				 $location.url("/posts")
+			};
+		 
+
+		 $scope.deletePost = function(post) {
+		  postService.deletePost(post)
+		    .then(function(res){
+		      $scope.loadData();
+		    })
+		    $location.url("/posts")
+		  };
+
+		 $scope.loadData();
+		 $scope.loadQuote();
+});
+
+
+
+
+
+
+

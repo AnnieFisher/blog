@@ -1,0 +1,60 @@
+var app = angular.module('ngBlog');
+
+
+app.factory('postService', function($http, $location,$window, $http) {
+
+
+	var postService = {};
+	var currentBlog= {};
+	
+	postService.getBlog = function(){
+		console.log("here in get")
+		return currentBlog;
+	}
+		  
+	postService.setBlog = function(blog){
+		console.log("here in set")
+		console.log(blog)
+		currentBlog = blog;
+	}
+		  
+		  
+	
+	postService.getPosts = function() {
+		
+		return $http({
+			method : 'GET',
+			url: 'api/post'
+		})
+		
+	};
+	
+	
+	postService.createPost = function(newPost) {
+		return $http({
+			method : 'POST',
+			url : 'api/post',
+			headers : {
+				'Content-Type' : 'application/json',
+				
+			},
+			data : newPost
+		})
+		.then(function() {
+			$location.url('/index');
+		})
+	}
+	
+	postService.deletePost = function(post){
+		return $http({
+			method : 'DELETE',
+			url : 'api/post/' + post.id,
+			headers : {
+					'Content-Type' : 'application/json'
+			},
+		});
+	};
+	
+	
+	return postService;
+});

@@ -1,0 +1,17 @@
+var app = angular.module('ngBlog');
+
+app.controller('addPostController', function($scope){
+    
+    
+    $scope.addPost ={};
+    
+	$scope.createPost = function(post) {
+		postService.createPost(post)
+		.then(function(response) {
+			$scope.addPost = response.data;
+			$location.url('/index');
+		});
+	};
+    
+    
+});

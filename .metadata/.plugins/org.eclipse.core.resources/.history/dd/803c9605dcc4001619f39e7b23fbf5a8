@@ -1,0 +1,16 @@
+
+<div class = "container">
+	<div class = "row">
+	  <div style="margin-top:50px">
+	  	  <h3 class="quote">“Few people are capable of expressing with equanimity opinions which differ from the prejudices of their social environment. Most people are even incapable of forming such opinions.” -albert einstein</h3>
+		  <label for="postName" class="sr-only">Post Name</label>
+		  <input type="text" maxlength="120" size = "50" ng-model="post.postName" name="postName" placeholder = "Title">
+		  <br><br><br>
+		  <textarea name="body" ng-model="post.body" placeholder = "Enter text here" 
+			maxlength="300" wrap="hard" rows="20" cols="150"></textarea>
+		   <br><br>
+		  
+		   <button class="btn btn-success" ng-click =createPost(post)>Submit</button>
+	   </div>
+	</div>
+</div>

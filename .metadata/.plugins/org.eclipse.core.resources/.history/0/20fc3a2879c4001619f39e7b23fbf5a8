@@ -1,0 +1,19 @@
+var app = angular.module('ngBlog');
+app.directive('blogDirective', function($location, postService){
+	return{
+		
+		restrict : 'E',
+		template : ` `,
+		link : function($scope,$element, $attribute){
+			
+		
+			
+			
+			
+			
+			$scope.blog = postService.getBlog();
+			
+		}
+	}
+	
+})

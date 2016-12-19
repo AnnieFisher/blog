@@ -1,0 +1,35 @@
+var app = angular.module('ngBlog');
+
+
+app.factory('blogService', function($http, $location) {
+
+
+	var blogService = {};
+
+	
+	var getPosts = function() {
+		
+		return $http({
+			method : 'GET',
+			url: 'api/post/'
+			
+		})
+	};
+	
+	
+	var createPost = function(post) {
+		return $http({
+			method : 'POST',
+			url : 'api/post/',
+			headers : {
+				'Content-Type' : 'application/json',
+				
+			},
+			data : post
+		});
+//		.then(function() {
+//			$location.url('/jobs');
+//		})
+	}
+	
+});

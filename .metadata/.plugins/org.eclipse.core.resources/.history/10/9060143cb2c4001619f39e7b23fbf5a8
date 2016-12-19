@@ -1,0 +1,99 @@
+
+var app = angular.module('ngBlog');
+app.controller('postsController', function($scope, postService, $location){
+    
+	$scope.posts = [];
+	$scope.quote = [];
+	$scope.result = [];
+	  $scope.loadData = function(){
+	      postService.getPosts()
+	        .then(function(response){
+	          $scope.posts = response.data;
+	        });
+	    };
+	    
+	    
+	    $scope.mySplit = function(string, nb) {
+	        var array = string.split(',');
+	        return array[nb];
+	    }
+	    
+	    var values = {name: 'misko', gender: 'male'};
+	    var log = [];
+	    angular.forEach(values, function(value, key) {
+	      this.push(key + ': ' + value);
+	    }, log);
+	    expect(log).toEqual(['name: misko', 'gender: male']);
+	    
+	    $scope.loadQuote = function(){
+	    		postService.getQuote()
+	    		.then(function(response){
+	    			$scope.quote = response.data;
+	    			for (var i = 0; i<$scope.quote.length;i++){
+	    				console.log($scope.quote[i]);
+	    				
+	    					
+	    				}
+	    			}
+	    		})
+	    }
+
+	    $scope.goToBlog = function(post) {
+	        postService.setBlog(post);
+	        $location.url("/blog")
+	    };
+	  
+		
+	    $scope.addPostRedirect = function() {
+			$location.url('/addPost');
+		};
+	
+		$scope.createPost = function(post) {
+		     
+		      post.postDate = Date.now();
+	
+		      var newPost = {
+		    		postDate : post.postDate,
+		    		postName : post.postName,
+		        body : post.body
+		 
+		      }
+	
+		      postService.createPost(post)
+		      .then(function(res){
+		      })
+		      $location.url("/posts")
+		 };
+		 
+		 $scope.updatePostRedirect = function() {
+				$location.url('/updatePost');
+				console.log(post)
+			};
+		 
+		 $scope.update = function(post) {
+				postService.update(post)
+				.then(function(response) {
+					$scope.loadData();
+				})
+				 $location.url("/posts")
+			};
+		 
+
+		 $scope.deletePost = function(post) {
+		  postService.deletePost(post)
+		    .then(function(res){
+		      $scope.loadData();
+		    })
+		    $location.url("/posts")
+		  };
+
+		 $scope.loadData();
+		 $scope.loadQuote();
+});
+
+
+
+
+
+
+

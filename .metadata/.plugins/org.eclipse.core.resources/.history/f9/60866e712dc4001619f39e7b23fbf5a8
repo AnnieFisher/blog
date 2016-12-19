@@ -1,0 +1,83 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+public class Post {
+
+	@Id
+	private int id;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "post_date")
+	private Date postDate;
+	
+	@Column(name= "post_name")
+	private String postName;
+	
+	private String body;
+	
+	private Post post;
+
+	public Post(){}
+
+	public Post(int id, Date postDate, String postName, String body, Post post) {
+		super();
+		this.id = id;
+		this.postDate = postDate;
+		this.postName = postName;
+		this.body = body;
+		this.post = post;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
+
+	public String getPostName() {
+		return postName;
+	}
+
+	public void setPostName(String postName) {
+		this.postName = postName;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", postDate=" + postDate + ", postName=" + postName + ", body=" + body + ", post="
+				+ post + "]";
+	}
+	
+	
+	
+}

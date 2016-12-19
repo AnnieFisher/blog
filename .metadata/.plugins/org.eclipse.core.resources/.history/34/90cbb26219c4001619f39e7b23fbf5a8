@@ -1,0 +1,27 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+public class Post {
+
+	@Id
+	private int id;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "post_date")
+	private Date postDate;
+	
+	@Column(name= "post_name")
+	private String postName;
+	
+	private String body;
+	
+	
+}

@@ -1,0 +1,84 @@
+var app = angular.module('ngBlog');
+app.directive('blogDirective', function($location, postService, $compile){
+	return{
+		
+		restrict : 'E',
+		template :  
+		
+		`
+		<div>
+			<div class="view">
+				<!--Intro content-->
+				<div class="full-bg-img flex-center">
+					<div class="row">
+		        			<div>
+				        		<ul>
+								<div class="border2">
+									<li id="title" >
+										<h3 id="name">{{blog.postName}}</h3>
+										<h5 id ="date">{{blog.postDate}}</h5></li>	
+									<li>
+										<h4 id = "postBody">{{blog.body}}</h4>
+									</li>
+								</div>
+								<br>
+								<button class="btn btn-danger btn-sm" ng-click = "deletePost(post)" >Delete Post</button>
+								<button class="btn btn-success" ng-click = "updatePostRedirect(blog)" >Update Post</button>
+	
+								<br>
+				        		</ul>
+
+		        			</div>
+					</div>  
+				</div>
+			</div>
+		
+	
+			
+		`,
+		
+		link : function($scope, $element, $attr){
+			
+			
+			$scope.blog = postService.getBlog();
+			
+//			$scope.blogCopy = {};
+//		     var editForm = null;
+//
+//		     $scope.update = function(blog) {
+//
+//		      if(editForm===null){
+//			      $scope.blogCopy = angular.copy(blog);
+//	
+//			      var $form =
+//			       `<tr>
+//				        <td>
+//				        <input ng-model ="blogCopy.postName"></input>
+//				        <input ng-model ="blogCopy.body"></input>
+//				        <button ng-click ="save(blogCopy)">Save</button>
+//				        <button ng-click="cancel()">Cancel</button>
+//				        </td>
+//			        	</tr>`
+//				    var compiledForm = $compile($form)($scope);
+//				    editForm = compiledForm;
+//				    $element.after(compiledForm);
+//
+//		      		}
+//		     	};
+//		     
+//				$scope.cancel = function() {
+//				  if(editForm !=null) {
+//				    editForm.remove(editForm);
+//				    editForm = null;
+//				  }
+//				};
+//				$scope.save = function(blog){
+//				  $scope.edit(blog);
+//				  editForm.remove();
+//				  editForm = null;
+//				  $scope.blogCopy = {};
+//				};
+
+		    }
+		  }
+		});

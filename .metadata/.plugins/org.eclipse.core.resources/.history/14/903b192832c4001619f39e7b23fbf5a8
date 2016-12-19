@@ -1,0 +1,22 @@
+
+var app = angular.module('ngBlog');
+app.controller('indexController', function($scope, $location){
+    
+    
+    
+    $scope.addPostRedirect = function() {
+		$location.url('/addPost');
+	};
+    
+    
+    
+    
+    
+});
+
+
+
+
+
+
+

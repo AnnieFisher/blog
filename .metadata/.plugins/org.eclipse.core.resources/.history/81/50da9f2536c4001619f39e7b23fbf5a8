@@ -1,0 +1,21 @@
+var app = angular.module('ngBlog');
+
+
+app.factory('blogService', function($http, $location) {
+
+
+	var blogService = {};
+
+	
+	var getPosts = function() {
+		
+		return $http({
+			method : 'GET',
+			url: 'api/post/'
+			
+		})
+	};
+	
+	
+	
+});

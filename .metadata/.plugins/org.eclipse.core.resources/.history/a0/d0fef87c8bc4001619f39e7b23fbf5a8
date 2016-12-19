@@ -1,0 +1,101 @@
+var app = angular.module('ngBlog');
+app.directive('blogDirective', function($location, postService, $compile){
+	return{
+		
+		restrict : 'E',
+		template :  
+		
+		`
+			
+        		<div class = "row">
+	        		<div>
+		        		<ul>
+		        			
+						<li><h3>{{blog.postName}}</h3></li>	
+						<li><h5>{{blog.postDate}}</h5></li>	
+						<li><h4>{{blog.body}}</h4></li>
+						<button ng-click = "deletePost(blog)" >Delete Post</button>
+						<button ng-click = "update(blog)" >Update Post</button>
+		        		</ul>
+	        		</div>
+        		</div>
+        
+    
+		
+		`,
+	
+		link : function($scope, $element, $attr){
+			
+			
+			$scope.blog = postService.getBlog();
+			
+			$scope.blogCopy = {};
+			var editBlog = null;
+			var displayBlog = null;
+		
+				$scope.update = function(blog) {
+					if (editBlog === null) {
+						$scope.blogCopy = angular.copy(blog);
+
+							var $inputRow =
+							`<form class = "row">
+							<input type = "text" ng-model ="blogCopy.postName" />
+							<input type = "text" ng-model = "blogCopy.body" />
+							<button class "btn btn-primary" ng-click="save(blogCopy)"> Save</button>
+							<button ng-click="cancel()" >Cancel</button>
+							<br><br><br>
+							</form>`
+							
+							var compiledRow = $compile($inputRow) ($scope);
+							editBlog = compiledRow;
+							$element.after(compiledRow);
+					
+//					$scope.update = function(job) {
+//					console.log("Details clicked");
+//							var $detailRow =
+//							`<div class="container">
+//								<form>
+//									<div class ="row">
+//										<div>
+//											<input type = "text" placeholder="Post Title" value={{blog.postName}}>
+//										</div>
+//										<div>
+//											<input type = "text" placeholder="body" value={{blog.body}}>
+//										</div>
+//									</div>
+//
+//							
+//									<div>
+//										<button class = "btn btn-primary btn-xs" ng-click="save(blogCopy)"> Save</button>
+//									</div>
+//									<div>
+//										<button class = "btn btn-primary btn-xs" ng-click="cancel()" >Cancel</button>
+//									</div>
+//										<br><br><br>
+//									</div>
+//								</form>
+//							</div>`
+//
+//							var compiledRow = $compile($detailRow) ($scope);
+//							editBlog = compiledRow;
+//							$element.after(compiledRow);
+//					}
+
+			$scope.cancel = function() {
+				if(editBlog !=null) {
+					editBlog.remove(editBlog);
+					editBlog =  null;
+				}
+			}
+
+			$scope.save = function(blog) {
+		          $scope.edit(blog); 
+		          editBlog.remove();
+		          editBlog = null;
+		          $scope.blogCopy = {};
+		        }
+			}
+		  }
+		}
+	  }
+	});

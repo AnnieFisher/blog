@@ -1,0 +1,74 @@
+var app = angular.module('ngBlog');
+app.directive('blogDirective', function($location, postService, $compile){
+	return{
+		
+		restrict : 'E',
+		template :  
+		
+		`
+			
+        		<div class = "row">
+	        		<div>
+		        		<ul>
+		        			
+						<li><h3>{{blog.postName}}</h3></li>	
+						<li><h5>{{blog.postDate}}</h5></li>	
+						<li><h4>{{blog.body}}</h4></li>
+						<button ng-click = "deletePost(data)" >Delete Post</button>
+						<button ng-click = "update(data)" >Update Post</button>
+		        		</ul>
+	        		</div>
+        		</div>
+        
+    
+		
+		`,
+		scope : {
+	      edit : "="
+	
+	    },
+		link : function($scope, $element, $attr){
+			
+			
+			$scope.blog = postService.getBlog();
+			
+			$scope.blogCopy = {};
+		     var editForm = null;
+
+		     $scope.update = function(blog) {
+
+		      if(editForm===null){
+			      $scope.blogCopy = angular.copy(blog);
+	
+			      var $form =
+			       `<tr>
+				        <td>
+				        <input ng-model ="blogCopy.postName"></input>
+				        <input ng-model ="blogCopy.body"></input>
+				        <button ng-click ="save(blogCopy)">Save</button>
+				        <button ng-click="cancel()">Cancel</button>
+				        </td>
+			        	</tr>`
+				    var compiledForm = $compile($form)($scope);
+				    editForm = compiledForm;
+				    $element.after(compiledForm);
+
+		      		}
+		     	};
+		     
+				$scope.cancel = function() {
+				  if(editForm !=null) {
+				    editForm.remove(editForm);
+				    editForm = null;
+				  }
+				};
+				$scope.save = function(blog){
+				  $scope.edit(blog);
+				  editForm.remove();
+				  editForm = null;
+				  $scope.blogCopy = {};
+				};
+
+		    }
+		  }
+		});

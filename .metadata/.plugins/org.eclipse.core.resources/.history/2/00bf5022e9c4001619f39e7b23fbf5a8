@@ -1,0 +1,128 @@
+
+html,
+body,
+.view {
+    height: 100%;
+}
+
+html,
+body,
+.view {
+    background: url("../wood.jpeg")no-repeat center center fixed;
+    background-image-opacity: 0.3; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+} 
+html,
+body,
+html { 
+  background: url("../wood.jpeg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+ul {
+	list-style: none;
+}
+
+#add {
+	padding-left: 11%;
+}
+/* body {
+	background-color: #ABBEC4;
+} */
+input, textarea {
+	outline: 2px solid #595959;
+    padding: 1%;
+}
+.border {
+    outline: 1px solid black;
+    padding: 1%;
+    background-color: #E1EAED;
+    opacity: 0.8;
+}
+.border2 {
+    outline: 1px solid black;
+    padding: 1%;
+    background-color: #E1EAED;
+    opacity: 0.8;
+    margin-top: 10%;
+}
+
+#title {
+	
+	font-family: 'Oswald', sans-serif;
+	color: white;
+	background-color: #5C7178;
+}
+
+#name {
+	display:inline;
+	margin-right: 1%;
+}
+#date {
+	display:inline;
+}
+#postBody {
+font-family: 'Open Sans', sans-serif;
+}
+#transparent {
+	background-color: grey;
+	/* opacity: 0.8; */
+	outline: 1px solid black;
+    padding: 1%;
+}
+#trans {
+	background-color: grey;
+	opacity: 0.9;
+	margin-top:10px;
+	outline: 1px solid black;
+    padding: 1%;
+}
+#myQuote {
+	background-color: grey;
+	outline: 1px solid #595959;
+	padding: 1%;
+}
+.quote {
+	font-family: 'Covered By Your Grace', cursive;
+	font-size: 200%;
+}
+#author {
+	font-family: 'Oswald', sans-serif;
+}
+#mainTitle {
+	font-family: 'Yatra One', cursive;
+}
+
+.btn {
+	opacity: 0.8;
+}
+input[type=submit] {
+    border-radius: 5px;
+    border: 0;
+    width: 80px;
+    height:25px;
+    text-align:justify;
+    font-family: Tahoma;
+    background: #f4f4f4;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #f4f4f4), color-stop(100%, #ededed));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f4f4f4 1%, #ededed 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f4f4f4 1%, #ededed 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#ededed', GradientType=0);
+    /* IE6-9 */
+}

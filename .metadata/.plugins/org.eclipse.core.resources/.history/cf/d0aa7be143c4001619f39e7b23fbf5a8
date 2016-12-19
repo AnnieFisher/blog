@@ -1,0 +1,31 @@
+
+var app = angular.module('ngBlog');
+app.controller('postsController', function($scope, postService, $location){
+    
+	$scope.posts = [];
+	
+	  $scope.loadData = function(){
+		  console.log(data)
+	      postService.getPosts()
+	        .then(function(response){
+	          $scope.posts = response.data;
+	          $scope.loadData();
+	        });
+		 
+	    }
+	  
+	
+    $scope.addPostRedirect = function() {
+    		console.log("in here")
+		$location.url('/addPost');
+	};
+
+	
+});
+
+
+
+
+
+
+

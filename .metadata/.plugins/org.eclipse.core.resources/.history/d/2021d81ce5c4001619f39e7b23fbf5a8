@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app ="ngBlog">
+
+<head>
+    
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Blog</title>
+    
+    <!--  Bootstrap  -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+	<link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Open+Sans:300i|Oswald|Yatra+One" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    
+    <!--  JS plugins  -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="app_client/ngApp.js"></script>
+    
+    <!--  Controllers  -->
+    <script src="app_client/controllers/postsController.js"></script>
+    
+    <!--  Services  -->
+    <script src="app_client/services/postService.js"></script>
+    
+    <!--  Directives  -->
+    <script src="app_client/directives/blogDirective.js"></script>
+    
+</head>
+   <body>
+ <div >
+	 <div class="view">
+	    <!--Intro content-->
+	    <div class="full-bg-img flex-center">
+	   		</div>
+	   		<div ng-view><div>
+	   		</div>
+	   	</div>
+	 </div>
+  </div>
+   </body>
+
+</html>

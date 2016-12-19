@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app ng-app="ngBlog">
+
+<head>
+    
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Blog</title>
+    
+    <!--  Bootstrap  -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+    
+    <!--  JS plugins  -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+<!--     <script src="js/bootstrap.min.js"></script> -->
+    <script src="app_client/ngApp.js"></script>
+    
+    <!--  Controllers  -->
+    <script src="app_client/controllers/addPostController.js"></script>
+    
+    <!--  Services  -->
+    <script src="app_client/services/postService.js"></script>
+    
+</head>
+    
+   <body ng-view>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3"><h1>Annie's World of Inspiration {{ "Annie".split("") }}</h1></div>
+       </div>
+            
+        <div>Put an ng-model here for that loops through the posts</div>
+        
+        <div>
+           <button ng-click = addPostRedirect()>Add Post</button>
+        </div>
+
+
+        
+    </body>
+
+</html>

@@ -1,0 +1,11 @@
+var app = angular.module('ngBlog');
+
+app.controller('addPostController', function($scope){
+    
+    
+    $scope.addPost ={};
+    
+    
+    
+    
+});

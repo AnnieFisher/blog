@@ -1,0 +1,33 @@
+package data;
+
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import entities.Post;
+
+@Transactional
+public class BlogDAO {
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	public List<Post> indexPosts(){
+		String query = "SELECT p from POST p";
+		return em.createQuery(query,Post.class).getResultList();
+	}
+	
+	public Post showPost(int id){
+		return em.find(Post.class, id);
+	}
+	
+	public Post create(Post post){
+		em.persist(post);
+		em.flush();
+		return post;
+	}
+}

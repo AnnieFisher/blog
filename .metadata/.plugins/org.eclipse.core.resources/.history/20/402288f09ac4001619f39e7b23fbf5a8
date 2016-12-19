@@ -1,0 +1,15 @@
+
+<div class = "container">
+	<div class = "row" style="margin-top:50px>
+	
+	  <label for="postName" class="sr-only">Post Name</label>
+	  <input type="text" maxlength="120" size = "50" ng-model="post.postName" name="postName" placeholder = "Title">
+	  <br><br><br>
+	  <textarea name="body" ng-model="post.body" placeholder = "Enter text here" 
+		maxlength="300" wrap="hard" rows="20" cols="150"></textarea>
+	   <br><br>
+	  
+	   <button ng-click =createPost(post)>Submit</button>
+	
+	</div>
+</div>
