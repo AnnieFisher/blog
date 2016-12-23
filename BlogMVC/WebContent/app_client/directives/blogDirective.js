@@ -1,5 +1,5 @@
 var app = angular.module('ngBlog');
-app.directive('blogDirective', function( postService, $compile){
+app.directive('blogDirective', function(postService, $compile){
 	return{
 		
 		restrict : 'E',
@@ -40,7 +40,6 @@ app.directive('blogDirective', function( postService, $compile){
 		`,
 		
 		link : function($scope, $element, $attr){
-			
 			
 			$scope.blog = postService.getBlog();
 			

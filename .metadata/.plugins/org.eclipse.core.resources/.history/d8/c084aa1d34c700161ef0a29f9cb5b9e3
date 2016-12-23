@@ -1,0 +1,105 @@
+var app = angular.module('ngBlog');
+
+
+app.factory('postService', function($http, $location) {
+
+
+	var postService = {};
+	var currentBlog= {};
+	
+	postService.getBlog = function(){
+		console.log("here in get")
+		return currentBlog;
+	}
+		  
+	postService.setBlog = function(blog){
+		currentBlog = blog;
+	}
+		  
+	postService.getPosts = function() {
+		var userId = null;
+		if (authenticationService.isLoggedIn()) {
+			userId = authenticationService.currentUser().id;
+		}
+		return $http({
+			method : 'GET',
+			url: 'api/user/' +userId + 'posts',
+			headers : {
+				'x-access-token' : authenticationService.getToken()
+			}
+		})
+	 };
+	 
+	 postService.getPost = function() {
+			
+			return $http({
+				method : 'GET',
+				url: 'api/user/' +userId + 'posts'
+			})
+			
+	};
+	
+	postService.getQuote = function() {
+		
+		return $http({
+			method : 'GET',
+			url: 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback='
+		})
+		
+	};
+	
+	
+	postService.createPost = function(newPost) {
+		var userId = null;
+		if (authenticationService.isLoggedIn()) {
+			userId = authenticationService.currentUser().id;
+		}
+		return $http({
+			method : 'POST',
+			url: 'api/user/' +userId + 'posts',
+			headers : {
+				'Content-Type' : 'application/json',
+				'x-access-token' : authenticationService.getToken()
+			},
+			data : newPost
+		})
+		.then(function() {
+			$location.url('/posts');
+		})
+	}
+	
+	postService.update = function(updatedPost) {
+		var userId = null;
+		if (authenticationService.isLoggedIn()) {
+			userId = authenticationService.currentUser().id;
+		}
+		return $http({
+			method : 'PUT',
+			url : 'api/user/' +userId+ '/posts/'+ updatedPost.id,
+			headers : {
+				'Content-Type' : 'application/json',
+				'x-access-token' : authenticationService.getToken()
+			},
+			data : updatedPost
+		})
+	};
+	
+	
+	postService.deletePost = function(post){
+		var userId = null;
+		if (authenticationService.isLoggedIn()) {
+			userId = authenticationService.currentUser().id;
+		}
+		return $http({
+			method : 'DELETE',
+			url : 'api/user/' +userId +'/posts/' + post.id,
+			headers : {
+				'x-access-token' : authenticationService.getToken()	
+			},
+		});
+	};
+	
+	
+	
+	return postService;
+});

@@ -8,8 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Post implements Serializable{
@@ -28,15 +32,21 @@ public class Post implements Serializable{
 	private String postName;
 	
 	private String body;
-
+	
+	@ManyToOne
+	@JoinColumn(name="user_id",referencedColumnName="id")
+	@JsonBackReference
+	private Users user;
+	
 	public Post(){}
 
-	public Post(int id, Date postDate, String postName, String body) {
+	public Post(int id, Date postDate, String postName, String body, Users user) {
 		super();
 		this.id = id;
 		this.postDate = postDate;
 		this.postName = postName;
 		this.body = body;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -67,11 +77,22 @@ public class Post implements Serializable{
 		this.body = body;
 	}
 
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", postDate=" + postDate + ", postName=" + postName + ", body=" + body + "]";
 	}
 
-	
 	
 }

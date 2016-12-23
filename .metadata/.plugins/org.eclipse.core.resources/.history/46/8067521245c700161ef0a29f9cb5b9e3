@@ -1,0 +1,17 @@
+// homeController.js
+
+var app = angular.module('ngBlog');
+
+app.controller("homeController", function($scope, authenticationService, $location, postService) {
+	
+	$scope.user = {};
+	
+	
+	$scope.loadUser= function(){
+		return authenticationService.currentUser()
+	      console.log(authenticationService.currentUser());
+	    }
+	
+	
+
+});

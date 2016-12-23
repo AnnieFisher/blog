@@ -1,0 +1,26 @@
+// homeController.js
+
+var app = angular.module('ngBlog');
+
+app.controller("homeController", function($scope, authenticationService, $location, postService) {
+	
+	$scope.user = {};
+	$scope.posts = [];
+	$scope.quotes = [];
+	$scope.temp;
+	
+	$scope.loadUser= function(){
+		return authenticationService.currentUser()
+	      console.log(authenticationService.currentUser());
+	    }
+	
+	 $scope.loadPosts = function(){
+		  console.log("in post controller")
+	      postService.getPosts()
+	        .then(function(response){
+	          $scope.posts = response.data;
+	        });
+	 };
+	
+
+});

@@ -1,0 +1,52 @@
+package controllers;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import data.BlogDAO;
+import entities.Users;
+import security.JsonWebTokenGenerator;
+
+@RestController
+@RequestMapping("/auth")
+public class AuthenticationController {
+
+	@Autowired
+	JsonWebTokenGenerator jwtGen;
+	
+	@Autowired
+	BlogDAO blogDAO;
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Map<String, String> login(HttpServletRequest req, HttpServletResponse res, @RequestBody String userJsonString){
+		ObjectMapper mapper = new ObjectMapper();
+		Users user = null;
+		Users returnUser = null;
+		try{
+			user=mapper.readValue(userJsonString, Users.class);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		try{
+			returnUser = blogDAO.authenticateUser(user);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("in the authentication controller login catch");
+		}
+		
+		
+	}
+		
+}

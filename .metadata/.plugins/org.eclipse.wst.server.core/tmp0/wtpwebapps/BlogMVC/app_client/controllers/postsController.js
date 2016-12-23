@@ -1,13 +1,12 @@
 
 var app = angular.module('ngBlog');
-app.controller('postsController', function($scope, postService, $location){
+app.controller('postsController', function($scope, postService,authenticationService, $location){
     
 	$scope.posts = [];
 	$scope.quotes = [];
-	$scope.resultArr = [];
 	$scope.temp;
 	
-	  $scope.loadData = function(){
+	  $scope.loadPosts = function(){
 	      postService.getPosts()
 	        .then(function(response){
 	          $scope.posts = response.data;
@@ -44,25 +43,18 @@ app.controller('postsController', function($scope, postService, $location){
 		    		postName : post.postName,
 		        body : post.body
 		      }
-	
 		      postService.createPost(newPost)
 		      .then(function(res){
 		      })
 		      $location.url("/posts")
 		 };
-		 
-//		 $scope.updatePostRedirect = function(post) {
-//				$location.url('/updatePost');
-//				console.log(post)
-//			};
-		 
+		 		 
 		 $scope.edit = function(post) {
-			 console.log("in EDIT***")
 			postService.update(post)
 			.then(function(response) {
 				
 			})
-			$scope.loadData();
+			$scope.loadPosts();
 			$location.url("/posts")
 		 };
 		 
@@ -74,9 +66,16 @@ app.controller('postsController', function($scope, postService, $location){
 		    })
 		    $location.url("/posts")
 		  };
-
-		 $scope.loadData();
-		 $scope.loadQuote();
+		  
+		  
+		  $scope.logOut = function(){
+			
+			authenticationService.logout();
+			$location.url('/general');
+			}
+	
+//		 $scope.loadPosts();
+//		 $scope.loadQuote();
 });
 
 

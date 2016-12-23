@@ -17,11 +17,11 @@
 	<context:component-scan base-package="controllers" />
 
 	<!-- bcrypt bean -->
-<!-- 	<bean id="bCryptPasswordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
+ 	<bean id="bCryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> 
 	<bean id="blogdao" class="data.BlogDAO" />
-<!-- 	<bean id="secretKeyGenerator" class="security.SecretKeyGenerator" />
-	<bean id="jsonWebTokenGenerator" class="security.JsonWebTokenGenerator" /> -->
+	<bean id="secretKeyGenerator" class="security.SecretKeyGenerator" />
+	<bean id="jsonWebTokenGenerator" class="security.JsonWebTokenGenerator" /> 
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="BlogJPA" />
@@ -30,19 +30,18 @@
 	<bean id="myTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="myEntityManagerFactory" />
 	</bean>
-<!--     <bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" /> -->
+    <bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
 
-<!-- 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/*/jobs/**" />
+			<mvc:mapping path="/user/*/posts/**" />
 			<ref bean="DataSecurityInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/jobs" />
+			<mvc:mapping path="/posts" />
 			<ref bean="DataSecurityInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
 </beans>

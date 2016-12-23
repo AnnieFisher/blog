@@ -1,0 +1,28 @@
+// loginController.js
+
+var app = angular.module('ngBlog');
+
+app.controller("loginController", function($scope, authenticationService, $location, postService) {
+
+	$scope.displayError = false;
+	$scope.posts = [];
+	console.log("Initialized empty $scope.posts array");
+
+
+	// Login User
+	$scope.loginUser = function(user){
+		console.log(user);
+		authenticationService.loginNewUser(user)
+		.then(function(response) {
+			authenticationService.saveToken(response.data.jwt);
+			if (response.status < 400) {
+				console.log(response);
+				$location.url('/home');
+			}
+			return response;
+		})		
+	};
+
+	
+});
+
