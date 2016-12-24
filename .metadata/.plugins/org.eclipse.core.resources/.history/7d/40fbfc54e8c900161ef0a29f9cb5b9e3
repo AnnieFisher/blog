@@ -35,7 +35,7 @@ app.directive('bloggeneralDirective', function(generalService, $location){
 					</div>  
 				</div>
 			
-		      <div class="col-md-6 col-md-offset-3">
+		      <div>
 			      <form name="addComment">
 			      	<h2> Leave a comment</h2>
 			      	<button ng-click =createComment(comment)>Submit</button>

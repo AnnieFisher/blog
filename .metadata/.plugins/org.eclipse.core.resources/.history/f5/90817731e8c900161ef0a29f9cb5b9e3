@@ -25,17 +25,14 @@ app.directive('bloggeneralDirective', function(generalService, $location){
 											<h4 id = "postBody">{{blog.body}}</h4>		
 									</div>
 								
-									<div class="col-md-6 col-md-offset-3">
-									<h4>Comments</h4>
-									<h5 ng-repeat="comment in blog.comments">{{comment.body}} {{comment.postDate}}</h5>
-									</div
+									<div class="col-md-6 col-md-offset-3" ng-repeat="comment in blog.comments"><h5>{{comment.body}} {{comment.postDate}}</h5></div
 							
 								</div>
 		        			</div>
 					</div>  
 				</div>
 			
-		      <div class="col-md-6 col-md-offset-3">
+		      <div>
 			      <form name="addComment">
 			      	<h2> Leave a comment</h2>
 			      	<button ng-click =createComment(comment)>Submit</button>

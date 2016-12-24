@@ -6633,3 +6633,19 @@ Caused by: org.codehaus.plexus.util.xml.pull.XmlPullParserException: Unrecognise
 2016-12-24 07:42:15,993 [Worker-301] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/main/resources
 2016-12-24 07:42:15,993 [Worker-301] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 2016-12-24 07:42:15,994 [Worker-301] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/test/resources
+2016-12-24 07:49:13,135 [Worker-301] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:49:13,139 [Worker-301] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/main/resources
+2016-12-24 07:49:13,140 [Worker-301] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:49:13,140 [Worker-301] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/test/resources
+2016-12-24 07:49:38,255 [Worker-302] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:49:38,257 [Worker-302] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/main/resources
+2016-12-24 07:49:38,257 [Worker-302] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:49:38,258 [Worker-302] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/test/resources
+2016-12-24 07:50:13,265 [Worker-304] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:50:13,266 [Worker-304] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/main/resources
+2016-12-24 07:50:13,267 [Worker-304] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:50:13,268 [Worker-304] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/test/resources
+2016-12-24 07:50:37,798 [Worker-305] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:50:37,800 [Worker-305] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/main/resources
+2016-12-24 07:50:37,802 [Worker-305] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-12-24 07:50:37,802 [Worker-305] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/anniefisher/Desktop/blog/BlogMVC/src/test/resources
