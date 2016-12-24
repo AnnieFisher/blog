@@ -1,0 +1,147 @@
+package data;
+
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
+
+import entities.Comment;
+import entities.Post;
+import entities.Users;
+
+@Transactional
+public class BlogDAO {
+
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+	public List<Users> indexUsers(){
+		String query = "Select u from Users u";
+		return em.createQuery(query, Users.class).getResultList();
+	}
+	
+	public Users showUser(int id) {
+		return em.find(Users.class, id);
+	}
+	
+	
+	public List<Post> indexPosts(){
+		String query = "Select p from Post p";
+		return em.createQuery(query,Post.class).getResultList();
+	}
+	
+	public Post showPost(int id){
+		return em.find(Post.class, id);
+	}
+	
+	public Collection<Post> showPosts(int id) {
+		Users user = null;
+		try{
+			user = em.find(Users.class, id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user.getPosts();
+	}
+	
+	public Collection<Comment> showComments(int id) {
+		Post post = null;
+		post = em.find(Post.class, id);
+		return post.getComments();
+	}
+	
+	public void createPost(Post post, int id){
+		Users user = em.find(Users.class, id);
+		post.setUser(user);
+		em.persist(post);
+		em.flush();
+	}
+	
+	public void createComment(Comment comment, int id){
+		Post post = em.find(Post.class, id);
+		comment.setPost(post);
+		em.persist(comment);
+		em.flush();
+	}
+	
+	public Users create(Users user) {
+		String rawPassword = user.getPassword();
+		String encodedPassword = passwordEncoder.encode(rawPassword);
+		user.setPassword(encodedPassword);
+		user.setUsername(user.getUsername());
+		em.persist(user);
+		em.flush();
+		return user;
+	}
+	
+	public Users authenticateUser(Users loginData) {
+		Users user = null;
+		user = em.createQuery("select u from Users u where u.username = :username", Users.class)
+				.setParameter("username"	, loginData.getUsername()).getSingleResult();
+		System.out.println(user.getId());
+		if(user !=null) {
+			String rawPassword = loginData.getPassword();
+			String encodedPassword = user.getPassword();
+			if(passwordEncoder.matches(rawPassword, encodedPassword)) {
+				return user;
+			} else {
+				System.out.println("invalid password entered");
+				return null;
+			}
+		}
+		return user;
+	}
+	
+	public Users update(int id, Users user) {
+		Users updatedUser = em.find(Users.class,id);
+		updatedUser.setUsername(user.getUsername());
+		updatedUser.setPassword(user.getPassword());
+		updatedUser.setPosts(user.getPosts());
+		
+		em.merge(updatedUser);
+		return updatedUser;
+	}
+	
+	public Post update(int id, Post post){
+		Users managedUser = em.find(Users.class, id);
+		post.setUser(managedUser);
+		post = em.find(Post.class, id);	
+		post.setBody(post.getBody());
+		post.setPostName(post.getPostName());
+		post.setPostDate(post.getPostDate());
+		post.setComments(post.getComments());
+		return post;
+	}
+	
+	public Comment update(int id, Comment comment){
+		Post post = em.find(Post.class, id);
+		comment.setPost(post);
+		comment = em.find(Comment.class, id);
+		comment.setBody(comment.getBody());
+		comment.setPostDate(comment.getPostDate());
+		return comment;
+	}
+	
+	public void destroyUser(int id){
+		Users user = em.find(Users.class, id);
+		em.remove(user);
+	}
+	
+	public void destroyPost(int id, int pId){
+		String query = "Delete from Post where id =:pId";
+		em.createQuery(query).setParameter("pId", pId).executeUpdate();
+	}
+	
+	public void destroyComment(int id, int cId){
+		String query = "Delete from Comment where id =:cId";
+		em.createQuery(query).setParameter("cId", cId).executeUpdate();
+	}
+}

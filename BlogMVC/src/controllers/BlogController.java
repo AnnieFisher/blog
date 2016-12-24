@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.BlogDAO;
+import entities.Comment;
 import entities.Post;
 import entities.Users;
 
@@ -48,7 +49,7 @@ public class BlogController {
 		return blogDAO.showPosts(id);
 	}
 	
-	@RequestMapping(path = "user/{id}/posts/{jId}",method = RequestMethod.GET)
+	@RequestMapping(path = "user/{id}/posts/{pId}",method = RequestMethod.GET)
 	public Post showPost(@PathVariable int id, @PathVariable int pId) {
 		return blogDAO.showPost(pId);
 	}
@@ -59,10 +60,20 @@ public class BlogController {
 		return blogDAO.indexPosts();
 	}
 	
+	@RequestMapping(path = "comment",method = RequestMethod.GET)
+	public List<Comment> indexComment(){
+		return blogDAO.indexComments();
+	}
+	
 	// if i want to retrieve a single post for home page
 	@RequestMapping(path = "post/{id}",method = RequestMethod.GET)
 	public Post showPost(@PathVariable int id) {
 		return blogDAO.showPost(id);
+	}
+	
+	@RequestMapping(path = "posts/{id}/comment/",method = RequestMethod.GET)
+	public Collection<Comment> showComments(@PathVariable int id){
+		return blogDAO.showComments(id);
 	}
 	
 	@RequestMapping(path = "user/{id}", method = RequestMethod.PUT)
@@ -77,7 +88,7 @@ public class BlogController {
 		blogDAO.update(id, user);
 	}
 	
-	@RequestMapping(path ="post/{id}/posts/{id}", method = RequestMethod.PUT)
+	@RequestMapping(path ="user/{id}/posts/{pId}", method = RequestMethod.PUT)
 	public void updatePost(@PathVariable int id, @RequestBody String postJSON){
 		ObjectMapper mapper = new ObjectMapper();
 		Post post = null;
@@ -88,6 +99,18 @@ public class BlogController {
 		}
 		blogDAO.update(id, post);
 		
+	}
+	
+	@RequestMapping(path= "posts/{id}/comment{id}", method = RequestMethod.PUT)
+	public void updateComment(@PathVariable int id, @RequestBody String commentJSON){
+		ObjectMapper mapper = new ObjectMapper();
+		Comment comment = null;
+		try{
+			comment = mapper.readValue(commentJSON, Comment.class);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		blogDAO.update(id,  comment);
 	}
 	
 	@RequestMapping(path = "user", method = RequestMethod.POST)
@@ -115,6 +138,20 @@ public class BlogController {
 		blogDAO.createPost(post,id);
 	}
 	
+	@RequestMapping(path = "post/{id}/comments", method = RequestMethod.POST)
+	public void createComment(@PathVariable int id, @RequestBody String commentJSON) {
+		ObjectMapper mapper = new ObjectMapper();
+		Comment comment = null;
+		try{
+			comment = mapper.readValue(commentJSON, Comment.class);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		blogDAO.createComment(comment, id);
+		
+	}
+	
+	
 	@RequestMapping(path = "user/{id}", method = RequestMethod.DELETE)
 	public void destroyUser(@PathVariable int id) {
 		blogDAO.destroyUser(id);
@@ -123,5 +160,10 @@ public class BlogController {
 	@RequestMapping(path= "user/{id}/posts/{pId}",method = RequestMethod.DELETE)
 	public void destroyPost(@PathVariable int id, @PathVariable int pId) {
 		blogDAO.destroyPost(id, pId);
+	}
+	
+	@RequestMapping(path = "post/{id}/comment/{cId}", method = RequestMethod.DELETE)
+	public void destroyComment(@PathVariable int id, @PathVariable int cId) {
+		blogDAO.destroyComment(id, cId);
 	}
 }

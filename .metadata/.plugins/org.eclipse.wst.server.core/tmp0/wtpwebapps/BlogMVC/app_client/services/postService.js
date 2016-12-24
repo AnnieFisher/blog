@@ -30,20 +30,6 @@ app.factory('postService', function($http, $location, authenticationService) {
 		})
 	 };
 	 
-//	 postService.getPost = function(postId) {
-//		 var userId = null;
-//			if (authenticationService.isLoggedIn()) {
-//				userId = authenticationService.currentUser().id;
-//			}
-//			return $http({
-//				method : 'GET',
-//				url: 'api/user/' +userId + '/posts/' +postId,
-//				headers : {
-//					'x-access-token' : authenticationService.getToken()
-//				}
-//			})
-//			
-//	};
 	
 	postService.getQuote = function() {
 		

@@ -48,6 +48,26 @@ CREATE TABLE IF NOT EXISTS `Post` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `Comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Comment` ;
+
+CREATE TABLE IF NOT EXISTS `Comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `post_date` DATETIME NULL,
+  `body` VARCHAR(250) NULL,
+  `Post_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Comments_Post1_idx` (`Post_id` ASC),
+  CONSTRAINT `fk_Comments_Post1`
+    FOREIGN KEY (`Post_id`)
+    REFERENCES `Post` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO blogStart;
  DROP USER blogStart;

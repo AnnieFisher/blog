@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Comment;
 import entities.Post;
 import entities.Users;
 
@@ -37,6 +38,11 @@ public class BlogDAO {
 		return em.createQuery(query,Post.class).getResultList();
 	}
 	
+	public List<Comment> indexComments(){
+		String query = "Select c from Comment c";
+		return em.createQuery(query,Comment.class).getResultList();
+	}
+	
 	public Post showPost(int id){
 		return em.find(Post.class, id);
 	}
@@ -51,10 +57,23 @@ public class BlogDAO {
 		return user.getPosts();
 	}
 	
+	public Collection<Comment> showComments(int id) {
+		Post post = null;
+		post = em.find(Post.class, id);
+		return post.getComments();
+	}
+	
 	public void createPost(Post post, int id){
 		Users user = em.find(Users.class, id);
 		post.setUser(user);
 		em.persist(post);
+		em.flush();
+	}
+	
+	public void createComment(Comment comment, int id){
+		Post post = em.find(Post.class, id);
+		comment.setPost(post);
+		em.persist(comment);
 		em.flush();
 	}
 	
@@ -99,11 +118,20 @@ public class BlogDAO {
 	public Post update(int id, Post post){
 		Users managedUser = em.find(Users.class, id);
 		post.setUser(managedUser);
-		Post managedPost = em.find(Post.class, id);	
-		managedPost.setBody(post.getBody());
-		managedPost.setPostName(post.getPostName());
-		managedPost.setPostDate(post.getPostDate());
-		return managedPost;
+		post = em.find(Post.class, id);	
+		post.setBody(post.getBody());
+		post.setPostName(post.getPostName());
+		post.setPostDate(post.getPostDate());
+		return post;
+	}
+	
+	public Comment update(int id, Comment comment){
+		Post post = em.find(Post.class, id);
+		comment.setPost(post);
+		comment = em.find(Comment.class, id);
+		comment.setBody(comment.getBody());
+		comment.setPostDate(comment.getPostDate());
+		return comment;
 	}
 	
 	public void destroyUser(int id){
@@ -114,5 +142,10 @@ public class BlogDAO {
 	public void destroyPost(int id, int pId){
 		String query = "Delete from Post where id =:pId";
 		em.createQuery(query).setParameter("pId", pId).executeUpdate();
+	}
+	
+	public void destroyComment(int id, int cId){
+		String query = "Delete from Comment where id =:cId";
+		em.createQuery(query).setParameter("cId", cId).executeUpdate();
 	}
 }
