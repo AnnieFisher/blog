@@ -8,6 +8,7 @@ app.factory('postService', function($http, $location, authenticationService) {
 	var currentBlog= {};
 	
 	postService.getBlog = function(){
+		console.log("here in get")
 		return currentBlog;
 	}
 		  

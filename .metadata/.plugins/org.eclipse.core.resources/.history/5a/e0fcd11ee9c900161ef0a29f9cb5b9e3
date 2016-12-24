@@ -12,6 +12,8 @@ app.factory('generalService', function($http, $location) {
 	}
 		  
 	generalService.setBlog = function(blog){
+		console.log("here in set")
+		console.log(currentBlog)
 		currentBlog = blog;
 	}
 		  

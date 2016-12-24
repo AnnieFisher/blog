@@ -56,8 +56,10 @@ app.controller("homeController", function($scope, authenticationService, $locati
 		 };
 		 		 
 		 $scope.edit = function(post) {
+			console.log("in EDIT***")
 			postService.update(post)
 			.then(function(response) {
+				
 			})
 			$scope.loadPosts();
 			$location.url("/home")

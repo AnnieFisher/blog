@@ -17,7 +17,6 @@ app.controller("registrationController", function($scope, registrationService, $
 		})
 		.catch(function(err){
 			$location.url('/login');
-			console.log(saveToken)
 		})
 	}
 	

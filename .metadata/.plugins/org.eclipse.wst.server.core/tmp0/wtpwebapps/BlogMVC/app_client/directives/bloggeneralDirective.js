@@ -62,11 +62,6 @@ app.directive('bloggeneralDirective', function(generalService, $location){
 		        }
 		        generalService.addComment($scope.blog, newComment)
 		        .then(function(res){
-		            
-		          console.log("comments")
-		          console.log($scope.blog.comments)
-		          console.log(newComment)
-		
 		          $location.url("/blogGen")
 		          })
 		

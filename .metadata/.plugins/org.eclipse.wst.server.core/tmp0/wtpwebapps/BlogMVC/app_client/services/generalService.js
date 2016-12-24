@@ -8,13 +8,10 @@ app.factory('generalService', function($http, $location) {
 	var currentBlog= {};
 	
 	generalService.getBlog = function(){
-		console.log("here in get")
 		return currentBlog;
 	}
 		  
 	generalService.setBlog = function(blog){
-		console.log("here in set")
-		console.log(currentBlog)
 		currentBlog = blog;
 	}
 		  
@@ -25,19 +22,8 @@ app.factory('generalService', function($http, $location) {
 			url: 'api/post'
 		})
 	};
-
-//	generalService.getComments = function() {
-//		var postId = null;
-//		
-//		return $http({
-//			method : 'GET',
-//			url: 'api/post/' +postId + '/comment'
-//		})
-//	 };
 	 
 	 generalService.addComment = function(blog, newComment) {
-			console.log("addComment")
-			console.log(newComment)
 			return $http({
 				method : 'POST',
 				url : 'api/post/' + blog.id +'/comment',

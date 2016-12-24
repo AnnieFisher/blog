@@ -11,11 +11,9 @@ app.controller("homeController", function($scope, authenticationService, $locati
 	
 	$scope.loadUser= function(){
 		return authenticationService.currentUser()
-	      console.log(authenticationService.currentUser());
 	    }
 	
 	 $scope.loadPosts = function(){
-		  console.log("in post controller")
 	      postService.getPosts()
 	        .then(function(response){
 	          $scope.posts = response.data;
@@ -58,10 +56,8 @@ app.controller("homeController", function($scope, authenticationService, $locati
 		 };
 		 		 
 		 $scope.edit = function(post) {
-			console.log("in EDIT***")
 			postService.update(post)
 			.then(function(response) {
-				
 			})
 			$scope.loadPosts();
 			$location.url("/home")
