@@ -103,3 +103,13 @@ INSERT INTO `Post` (`id`, `post_name`, `body`, `post_date`, `User_id`) VALUES (4
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `Comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `blog`;
+INSERT INTO `Comment` (`id`, `post_date`, `body`, `Post_id`) VALUES (1, '2016-12-22', 'this post rocks', 2);
+
+COMMIT;
+

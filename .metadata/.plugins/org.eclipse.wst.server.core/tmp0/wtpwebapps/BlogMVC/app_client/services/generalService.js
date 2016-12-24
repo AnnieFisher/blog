@@ -26,6 +26,28 @@ app.factory('generalService', function($http, $location) {
 		})
 	};
 
+//	generalService.getComments = function() {
+//		var postId = null;
+//		
+//		return $http({
+//			method : 'GET',
+//			url: 'api/post/' +postId + '/comment'
+//		})
+//	 };
+	 
+	 generalService.addComment = function(blog, newComment) {
+			console.log("addComment")
+			console.log(newComment)
+			return $http({
+				method : 'POST',
+				url : 'api/post/' + blog.id +'/comment',
+
+			headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : newComment
+				})
+		};
 	
 	generalService.getQuoteGeneral = function() {
 		return $http({

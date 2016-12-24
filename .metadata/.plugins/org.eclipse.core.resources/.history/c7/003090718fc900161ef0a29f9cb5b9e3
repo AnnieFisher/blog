@@ -1,0 +1,34 @@
+<header ng-include="'gen-nav.html'"></header>
+
+	 <div class="container" style ="margin-bottom:10px">
+         <div class="row" id = "transparent">
+             <div class="col-md-9 col-md-offset-2 id ="quoteList">
+	            		<ul>
+		            		<li>
+		            		<h4 id="quote">"{{temp}}"</h4>
+		            		<h5 id = "author" ng-repeat= "qoute in quotes">-{{qoute.title}}</h5>
+		            		</li>
+	            		</ul>
+              </div>
+		   </div>
+      </div>
+
+     <div class="container">      
+       <div class="row">
+        		<div>
+	        		<ul ng-repeat= "post in posts">
+					<div class="border">
+						<li id="title" ng-click = goToBlogGen(post)>
+							<h3 id="name">{{post.postName}}</h3>
+							<h5 id ="date">{{post.postDate}}</h5></li>
+							<button ng-click="goToAddComment()">Add Comment</button>	
+						<li>
+							<h4 id = "postBody">{{post.body}}</h4>
+							<h4>{{loadComments().body}}</h4>
+						</li>
+					</div>
+					
+	        		</ul>
+        		</div>
+        </div>
+	</div>

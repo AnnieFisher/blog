@@ -1,4 +1,4 @@
 #Tomcat publish data
-#Fri Dec 23 20:24:22 MST 2016
+#Sat Dec 24 07:42:17 MST 2016
 org.eclipse.jst.jee.server\:/binary\:/Users/anniefisher/.m2/repository/org/springframework/spring-web/4.3.2.RELEASE/spring-web-4.3.2.RELEASE.jar=WEB-INF/lib/spring-web-4.3.2.RELEASE.jar
 org.eclipse.jst.j2ee.server\:BlogJPA=WEB-INF/lib/BlogJPA.jar

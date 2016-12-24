@@ -1,5 +1,5 @@
 var app = angular.module('ngBlog');
-app.directive('bloggeneralDirective', function(generalService){
+app.directive('bloggeneralDirective', function(generalService, $location){
 	return{
 		
 		restrict : 'E',
@@ -22,13 +22,24 @@ app.directive('bloggeneralDirective', function(generalService){
 									</div>
 									
 									<div class="col-md-6 col-md-offset-3" id="border2">
-											<h4 id = "postBody">{{blog.body}}</h4>
+											<h4 id = "postBody">{{blog.body}}</h4>		
 									</div>
+									<div class="col-md-6 col-md-offset-3" ng-repeat="comment in blog.comments"><h5>{{comment.body}}</h5></div
+							
 								</div>
 		        			</div>
 					</div>  
 				</div>
-			</div>
+			
+		      <div>
+			      <form name="addComment">
+			      	<h2> Leave a comment</h2>
+			      	<button ng-click =createComment(comment)>Submit</button>
+			        <textarea cols="100" ng-model="comment.body" placeholder="comment..." required ng-minlength="2" ng-maxlength="1000">
+			        
+			      </form>
+		     </div>
+		</div>
 	
 			
 		`,
@@ -37,6 +48,25 @@ app.directive('bloggeneralDirective', function(generalService){
 			
 			$scope.blog = generalService.getBlog();
 			
+					
+			
+			$scope.createComment = function(comment) {
+		        comment.date = Date.now();
+		        var newComment = { 
+		          postDate : comment.date,
+		          body : comment.body
+		        }
+		        generalService.addComment($scope.blog, newComment)
+		        .then(function(res){
+		            
+		          console.log("comments")
+		          console.log($scope.blog.comments)
+		          console.log(newComment)
+		
+		          $location.url("/blogGen")
+		          })
+		
+		        };
 		     
 		    }
 		  }

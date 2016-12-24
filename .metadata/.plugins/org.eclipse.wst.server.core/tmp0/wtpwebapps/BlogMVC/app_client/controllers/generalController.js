@@ -3,6 +3,7 @@ var app = angular.module('ngBlog');
 app.controller('generalController', function($scope, generalService, $location){
     
 		$scope.posts = [];
+		$scope.comments = [];
 		$scope.quotes = [];
 		$scope.temp;
 	
@@ -12,7 +13,7 @@ app.controller('generalController', function($scope, generalService, $location){
 	          $scope.posts = response.data;
 	        });
 	    };
-	    	    
+	    	
 	    
 	    $scope.loadQuote = function(){
 	    	generalService.getQuoteGeneral()
@@ -30,6 +31,8 @@ app.controller('generalController', function($scope, generalService, $location){
 	        generalService.setBlog(post);
 	        $location.url("/blogGen");
 	    };
+	    
+	 
 	  
 		 $scope.loadData();
 		 $scope.loadQuote();
